@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
@@ -13,7 +14,7 @@ function ForgotPasswordPage() {
   const onSubmit = async (values) => {
     try {
       const message = await forgotPassword(values.email);
-      toast.success(message || 'Password reset instructions sent to your email');
+      toast.success(message || 'Reset instructions sent to your email');
       navigate('/reset-password', { state: { email: values.email } });
     } catch (error) {
       toast.error(error.response?.data?.message || 'Could not send reset instructions');
@@ -21,16 +22,38 @@ function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-lg rounded-[32px] border border-white/70 bg-white/90 p-8 shadow-soft">
-        <h1 className="text-3xl font-bold text-slate-900">Forgot password</h1>
-        <p className="mt-2 text-sm text-slate-500">Enter your email to receive reset instructions.</p>
+    <div className="flex min-h-screen items-center justify-center bg-hero-grid bg-[size:24px_24px] px-4 py-10">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-md rounded-3xl border border-white/70 bg-white p-6 shadow-2xl sm:p-10"
+      >
+        {/* Brand */}
+        <div className="mb-6 flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 to-accent-500 text-sm font-bold text-white">SR</div>
+          <span className="text-sm font-semibold text-slate-600">Smart Retail POS</span>
+        </div>
+
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Forgot password?</h1>
+        <p className="mt-2 text-sm text-slate-500">Enter your work email and we'll redirect you to reset your password.</p>
+
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
-          <Input label="Email" type="email" {...register('email', { required: 'Email is required' })} error={errors.email?.message} />
-          <Button type="submit" className="w-full py-3" disabled={isSubmitting}>{isSubmitting ? 'Sending...' : 'Send reset link'}</Button>
+          <Input
+            label="Work email"
+            type="email"
+            placeholder="you@smartretail.com"
+            {...register('email', { required: 'Email is required' })}
+            error={errors.email?.message}
+          />
+          <Button type="submit" className="w-full py-3" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending…' : 'Send reset link'}
+          </Button>
         </form>
-        <Link to="/login" className="mt-5 inline-block text-sm font-semibold text-primary-600">Back to login</Link>
-      </div>
+
+        <Link to="/login" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">
+          ← Back to login
+        </Link>
+      </motion.div>
     </div>
   );
 }

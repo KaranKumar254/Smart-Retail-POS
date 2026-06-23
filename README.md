@@ -93,7 +93,7 @@ Smart-Retail-POS is a modern **Omnichannel Retail POS & Inventory Management Sys
 # 📁 Project Structure
 
 ```bash
-RetailX/
+Smart-Retail-POS/
 
 ├── Frontend/
 │   ├── src/
@@ -135,7 +135,7 @@ Create a `.env` file inside Backend.
 ```env
 PORT=5000
 
-MONGO_URI=mongodb://127.0.0.1:27017/RetailX_db
+MONGO_URI=mongodb://127.0.0.1:27017/Smart-Retail-POS_db
 
 JWT_SECRET=RetailX@2026#SECRET
 

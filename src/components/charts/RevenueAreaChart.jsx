@@ -32,4 +32,4 @@ function RevenueAreaChart({ data }) {
   );
 }
 
-export default ;
+export default RevenueAreaChart;

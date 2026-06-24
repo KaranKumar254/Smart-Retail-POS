@@ -1,6 +1,6 @@
 export const mockUser = {
   id: 'u1',
-  name: 'Aarav Sharma',
+  name: 'Karan Kumar',
   email: 'admin@smartretail.com',
   role: 'Admin',
   store: 'Central Flagship',

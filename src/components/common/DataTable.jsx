@@ -29,4 +29,4 @@ function DataTable({ columns, data, className = '' }) {
   );
 }
 
-export default DataTable;
+export default ;

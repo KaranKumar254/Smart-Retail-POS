@@ -23,4 +23,4 @@ function StatsCard({ item }) {
   );
 }
 
-export default StatsCard;
+export default ;

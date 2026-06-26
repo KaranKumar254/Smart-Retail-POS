@@ -14,4 +14,4 @@ export const formatDate = (value) =>
     day: '2-digit',
     month: 'short',
     year: 'numeric',
-  }).format(new Date(value));
+  }).format(new Date());

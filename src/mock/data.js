@@ -1,4 +1,4 @@
-export const mockUser = {
+export const  = {
   id: 'u1',
   name: 'Karan Kumar',
   email: 'admin@smartretail.com',

@@ -26,4 +26,4 @@ function Modal({ open, onClose, title, children }) {
   );
 }
 
-export default Modal;
+export default ;

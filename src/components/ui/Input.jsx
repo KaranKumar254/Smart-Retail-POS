@@ -19,4 +19,4 @@ const Input = forwardRef(function Input({ label, error, className, ...props }, r
   );
 });
 
-export default ;
+export default Input;

@@ -17,4 +17,4 @@ function Badge({ children, tone = 'slate', className }) {
   );
 }
 
-export default ;
+export default Badge;

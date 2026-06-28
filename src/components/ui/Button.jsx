@@ -24,4 +24,4 @@ function Button({ children, className, variant = 'primary', type = 'button', ...
   );
 }
 
-export default ;
+export default Button;

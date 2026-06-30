@@ -83,4 +83,4 @@ function ResetPasswordPage() {
   );
 }
 
-export default ResetPasswordPage;
+export default ;

@@ -92,4 +92,4 @@ function RegisterPage() {
   );
 }
 
-export default ;
+export default RegisterPage;

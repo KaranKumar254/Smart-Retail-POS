@@ -13,4 +13,4 @@ function DashboardRouter() {
   return <CashierDashboard />;
 }
 
-export default DashboardRouter;
+export default ;

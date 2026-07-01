@@ -249,4 +249,4 @@ function AdminDashboard() {
   );
 }
 
-export default ;
+export default AdminDashboard;

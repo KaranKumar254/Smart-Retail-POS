@@ -146,7 +146,7 @@ function InventoryPage() {
             {summary.sellingChannels} selling channels
           </h3>
           <p className="mt-2 text-sm text-slate-500">
-            Physical stores, kiosks, wholesale, and online inventory views.
+            Physical stores, kiosks, wholesale and online inventory views.
           </p>
         </div>
       </div>

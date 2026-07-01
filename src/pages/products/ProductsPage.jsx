@@ -114,7 +114,7 @@ function ProductsPage() {
     <div className="page-section">
       <PageHeader
         title="Product management"
-        description="Manage catalog information, pricing, barcode data, and stock visibility from a single premium product workspace."
+        description="Manage catalog information, pricing, barcode data and stock visibility from a single premium product workspace."
         actions={<Button onClick={openCreate}><HiOutlinePlus className="mr-2" size={18} /> Add product</Button>}
       />
 

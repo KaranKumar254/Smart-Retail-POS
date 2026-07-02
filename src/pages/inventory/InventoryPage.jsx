@@ -116,7 +116,7 @@ function InventoryPage() {
     <div className="page-section">
       <PageHeader
         title="Inventory Management"
-        description="Track stock across warehouses and stores, view movement history, and respond instantly to low-stock alerts."
+        description="Track stock across warehouses and stores, view movement history and respond instantly to low-stock alerts."
       />
 
       <div className="grid gap-5 lg:grid-cols-3">
@@ -126,7 +126,7 @@ function InventoryPage() {
             {summary.activeWarehouses} active hubs
           </h3>
           <p className="mt-2 text-sm text-slate-500">
-            Centralized replenishment serving retail, kiosks, and online orders.
+            Centralized replenishment serving retail, kiosks and online orders.
           </p>
         </div>
 

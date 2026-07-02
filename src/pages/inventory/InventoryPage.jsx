@@ -13,7 +13,7 @@ function InventoryPage() {
       store: 'Main Store',
       warehouse: 'Warehouse A',
       stock: 120,
-      threshold: 40,
+      threshold: 30,
       movement: '+15 units today',
     },
     {

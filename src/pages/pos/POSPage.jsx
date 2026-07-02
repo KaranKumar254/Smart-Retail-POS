@@ -174,7 +174,7 @@ function POSPage() {
           <div className="mb-5 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-semibold text-slate-900">Billing cart</h2>
-              <p className="text-sm text-slate-500">{cart.length} unique items in cart</p>
+              <p className="text-sm text-slate-500">{cart.length} Unique items in cart</p>
             </div>
             <Button variant="ghost" onClick={clearCart}>Clear</Button>
           </div>

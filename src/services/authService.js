@@ -38,7 +38,7 @@ export const authService = {
       if (isNetworkError) {
         const demo = tryDemoLogin(values.email, values.password);
         if (demo) return demo;
-        throw new Error('Invalid demo credentials. Try Admin, Manager, or Cashier buttons.');
+        throw new Error('Invalid demo credentials. Try Admin, Manager or Cashier buttons.');
       }
       throw err;
     }

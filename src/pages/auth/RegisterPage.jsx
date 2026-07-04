@@ -9,9 +9,7 @@ import { useAuthStore } from '@/store/authStore';
 function RegisterPage() {
   const navigate = useNavigate();
   const registerUser = useAuthStore((state) => state.register);
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
-    defaultValues: { role: 'Cashier' },
-  });
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
   const onSubmit = async (values) => {
     try {
@@ -36,8 +34,10 @@ function RegisterPage() {
           <span className="text-sm font-semibold text-slate-600">Smart Retail POS</span>
         </div>
 
-        <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Create a team account</h2>
-        <p className="mt-2 text-sm text-slate-500">Onboard admins, managers, and cashiers with role-based access.</p>
+        <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Create a cashier account</h2>
+        <p className="mt-2 text-sm text-slate-500">
+          Self-signup creates a Cashier account. An Admin can upgrade your role afterwards, or create Manager/Admin accounts directly from User Management.
+        </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2 sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0">
@@ -56,25 +56,15 @@ function RegisterPage() {
             />
           </div>
 
-          <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700">Role</span>
-            <select
-              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100"
-              {...register('role')}
-            >
-              <option>Admin</option>
-              <option>Manager</option>
-              <option>Cashier</option>
-            </select>
-          </label>
-
-          <Input
-            label="Password"
-            type="password"
-            placeholder="Minimum 6 characters"
-            {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Min 6 characters' } })}
-            error={errors.password?.message}
-          />
+          <div className="sm:col-span-2">
+            <Input
+              label="Password"
+              type="password"
+              placeholder="Minimum 6 characters"
+              {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Min 6 characters' } })}
+              error={errors.password?.message}
+            />
+          </div>
 
           <div className="sm:col-span-2">
             <Button type="submit" className="w-full py-3" disabled={isSubmitting}>

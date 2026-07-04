@@ -19,6 +19,8 @@ const DEMO_USERS = {
 
 const DEMO_TOKEN = 'demo-offline-token';
 
+const isNetworkError = (err) => !err.response || err.code === 'ERR_NETWORK' || err.code === 'ECONNREFUSED';
+
 const tryDemoLogin = (email, password) => {
   const entry = DEMO_USERS[email?.toLowerCase()];
   if (entry && entry.password === password) {
@@ -28,14 +30,18 @@ const tryDemoLogin = (email, password) => {
 };
 
 export const authService = {
+  register: async (values) => {
+    const { data } = await api.post('/auth/register', values);
+    return data;
+  },
+
   login: async (values) => {
     try {
       const { data } = await api.post('/auth/login', values);
       return data;
     } catch (err) {
       // If backend is offline or unreachable, fall back to demo mode
-      const isNetworkError = !err.response || err.code === 'ERR_NETWORK' || err.code === 'ECONNREFUSED';
-      if (isNetworkError) {
+      if (isNetworkError(err)) {
         const demo = tryDemoLogin(values.email, values.password);
         if (demo) return demo;
         throw new Error('Invalid demo credentials. Try Admin, Manager or Cashier buttons.');
@@ -59,21 +65,19 @@ export const authService = {
     try {
       const { data } = await api.post('/auth/forgot-password', { email });
       return data;
-    } catch {
-      // Demo mode — pretend it worked
-      if (DEMO_USERS[email?.toLowerCase()]) {
-        return { message: `Password reset link sent to ${email} (demo mode — check your inbox won't actually have mail)` };
+    } catch (err) {
+      // Only fall back to a friendly demo message if the backend is genuinely
+      // unreachable — a real error response (400/500 etc.) must still surface,
+      // otherwise failures get silently hidden behind a fake "success" message.
+      if (isNetworkError(err) && DEMO_USERS[email?.toLowerCase()]) {
+        return { message: `Password reset link sent to ${email} (demo mode — backend isn't running)` };
       }
-      return { message: `If ${email} is registered, a reset link has been sent.` };
+      throw err;
     }
   },
 
-  resetPassword: async (email, password) => {
-    try {
-      const { data } = await api.post('/auth/reset-password', { email, password });
-      return data;
-    } catch {
-      return { message: 'Password reset successful (demo mode).' };
-    }
+  resetPassword: async (email, token, password) => {
+    const { data } = await api.post('/auth/reset-password', { email, token, password });
+    return data;
   },
 };

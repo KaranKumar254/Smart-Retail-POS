@@ -13,11 +13,18 @@ function ForgotPasswordPage() {
 
   const onSubmit = async (values) => {
     try {
-      const message = await forgotPassword(values.email);
-      toast.success(message || 'Reset instructions sent to your email');
-      navigate('/reset-password', { state: { email: values.email } });
+      const result = await forgotPassword(values.email);
+      toast.success(result?.message || 'If this email is registered, reset instructions have been sent');
+
+      // No email provider is wired up yet, so the backend returns the reset
+      // token directly in non-production environments so the flow is
+      // testable end-to-end. Once real email delivery is added, drop this
+      // and just send the user to a "check your email" screen instead.
+      navigate('/reset-password', {
+        state: { email: values.email, devResetToken: result?.devResetToken },
+      });
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Could not send reset instructions');
+      toast.error(error.message || 'Could not send reset instructions');
     }
   };
 
@@ -35,7 +42,7 @@ function ForgotPasswordPage() {
         </div>
 
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Forgot password?</h1>
-        <p className="mt-2 text-sm text-slate-500">Enter your work email and we'll redirect you to reset your password.</p>
+        <p className="mt-2 text-sm text-slate-500">Enter your work email and we'll send you reset instructions.</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
           <Input
@@ -46,7 +53,7 @@ function ForgotPasswordPage() {
             error={errors.email?.message}
           />
           <Button type="submit" className="w-full py-3" disabled={isSubmitting}>
-            {isSubmitting ? 'Sending…' : 'Send reset link'}
+            {isSubmitting ? 'Sending…' : 'Send reset instructions'}
           </Button>
         </form>
 

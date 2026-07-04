@@ -11,6 +11,17 @@ export const useAuthStore = create(
       isAuthenticated: false,
       hasHydrated: false,
 
+      register: async (values) => {
+        try {
+          const data = await authService.register(values);
+          localStorage.setItem('smart-retail-token', data.token);
+          set({ user: data.user, token: data.token, isAuthenticated: true });
+        } catch (error) {
+          const message = error.response?.data?.message || error.message || 'Could not create account';
+          throw new Error(message);
+        }
+      },
+
       login: async (values) => {
         try {
           const data = await authService.login(values);
@@ -23,13 +34,23 @@ export const useAuthStore = create(
       },
 
       forgotPassword: async (email) => {
-        const data = await authService.forgotPassword(email);
-        return data.message;
+        try {
+          const data = await authService.forgotPassword(email);
+          return data;
+        } catch (error) {
+          const message = error.response?.data?.message || error.message || 'Could not send reset instructions';
+          throw new Error(message);
+        }
       },
 
-      resetPassword: async (email, password) => {
-        const data = await authService.resetPassword(email, password);
-        return data.message;
+      resetPassword: async (email, token, password) => {
+        try {
+          const data = await authService.resetPassword(email, token, password);
+          return data.message;
+        } catch (error) {
+          const message = error.response?.data?.message || error.message || 'Could not update password';
+          throw new Error(message);
+        }
       },
 
       refreshSession: async () => {

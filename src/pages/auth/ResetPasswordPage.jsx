@@ -11,18 +11,19 @@ function ResetPasswordPage() {
   const location = useLocation();
   const resetPassword = useAuthStore((state) => state.resetPassword);
   const prefillEmail = location.state?.email || '';
+  const prefillToken = location.state?.devResetToken || '';
 
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm({
-    defaultValues: { email: prefillEmail },
+    defaultValues: { email: prefillEmail, token: prefillToken },
   });
 
   const onSubmit = async (values) => {
     try {
-      const message = await resetPassword(values.email, values.password);
+      const message = await resetPassword(values.email, values.token, values.password);
       toast.success(message || 'Password updated — please log in');
       navigate('/login');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Could not update password');
+      toast.error(error.message || 'Could not update password');
     }
   };
 
@@ -40,7 +41,7 @@ function ResetPasswordPage() {
         </div>
 
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Reset password</h1>
-        <p className="mt-2 text-sm text-slate-500">Set a strong new password for your team account.</p>
+        <p className="mt-2 text-sm text-slate-500">Enter the reset code you were sent, along with a new password.</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
           <Input
@@ -49,6 +50,12 @@ function ResetPasswordPage() {
             placeholder="you@smartretail.com"
             {...register('email', { required: 'Email is required' })}
             error={errors.email?.message}
+          />
+          <Input
+            label="Reset code"
+            placeholder="Paste the code from your email"
+            {...register('token', { required: 'Reset code is required' })}
+            error={errors.token?.message}
           />
           <Input
             label="New password"

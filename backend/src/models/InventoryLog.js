@@ -14,4 +14,4 @@ const inventoryLogSchema = new mongoose.Schema(
 
 const InventoryLog = mongoose.model('InventoryLog', inventoryLogSchema);
 
-export default InventoryLog;
+

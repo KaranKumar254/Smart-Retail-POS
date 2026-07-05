@@ -1,4 +1,4 @@
-
+import { motion } from 'framer-motion';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 

@@ -1,5 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
+const COLORS = ['#3478f6', '#22c885', '#8b5cf6', '#f59e0b'];
 
 
 function SalesDonutChart({ data }) {

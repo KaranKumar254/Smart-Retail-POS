@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+
 
 function DataTable({ columns, data, className = '' }) {
   return (

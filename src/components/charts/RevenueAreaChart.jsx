@@ -1,5 +1,5 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-
+import { formatCurrency } from '@/lib/utils';
 
 function RevenueAreaChart({ data }) {
   return (

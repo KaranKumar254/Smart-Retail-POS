@@ -53,7 +53,7 @@ function CashierDashboard() {
 
           <section className="card-panel p-5">
             <div className="mb-5 flex items-center justify-between">
-              <h2 className="section-title">Recent transactions</h2>
+              <h2 className="section-title">Recent Transactions</h2>
               <Badge tone="blue">Live</Badge>
             </div>
             <div className="space-y-4">

@@ -48,7 +48,7 @@ function ReportsPage() {
     <div className="page-section">
       <PageHeader
         title="Reports & analytics"
-        description="Generate daily, weekly, and monthly sales intelligence with downloadable exports for finance and operations teams."
+        description="Generate daily, weekly and monthly sales intelligence with downloadable exports for finance and operations teams."
         actions={
           <>
             <Button variant="secondary" onClick={() => exportReport('CSV')}><HiOutlineArrowDownTray className="mr-2" size={18} /> Export CSV</Button>

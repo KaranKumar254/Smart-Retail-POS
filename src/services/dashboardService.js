@@ -1,4 +1,4 @@
-import api from '@/lib/api';
+
 import { statCards, revenueData, salesChannelData, reportHighlights } from '@/mock/data';
 
 const isOffline = (err) => !err.response || err.code === 'ERR_NETWORK' || err.code === 'ECONNREFUSED';

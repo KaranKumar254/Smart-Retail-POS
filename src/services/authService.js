@@ -1,5 +1,5 @@
 // src/services/authService.js
-
+import api from '@/lib/api';
 
 // Demo credentials that work WITHOUT a backend running
 const DEMO_USERS = {

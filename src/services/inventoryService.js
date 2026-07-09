@@ -1,4 +1,4 @@
-import api from '@/lib/api';
+
 import { inventoryItems } from '@/mock/data';
 
 const isOffline = (err) => !err.response || err.code === 'ERR_NETWORK' || err.code === 'ECONNREFUSED';

@@ -37,7 +37,7 @@ function ForgotPasswordPage() {
           <div>
             <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-3xl bg-white/15 text-xl font-bold">SR</div>
             <h1 className="max-w-sm text-4xl font-bold leading-tight">Unified retail command center.</h1>
-            <p className="mt-4 max-w-sm text-sm text-white/80">Track sales, manage stock, and run lightning-fast checkout — all in one place.</p>
+            <p className="mt-4 max-w-sm text-sm text-white/80">Track sales, manage stock and run lightning-fast checkout — all in one place.</p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {['Real-time stock sync', 'Fast POS billing', 'Manager analytics', 'Downloadable reports'].map((f) => (

@@ -281,7 +281,6 @@ function LoginPage() {
           <div className="flex items-center gap-2.5">
             <span>v1.0.0 Production Cluster</span>
             <span className="h-2 w-px bg-slate-200" />
-            <span>MERN Stack Architecture</span>
           </div>
         </div>
       </div>

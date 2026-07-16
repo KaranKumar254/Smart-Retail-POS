@@ -107,7 +107,7 @@ function AdminDashboard() {
     { icon: '🧾', label: 'New Sale',        description: 'Open POS billing screen',      color: 'bg-primary-50 text-primary-600', path: '/pos' },
     { icon: '📦', label: 'Add Product',     description: 'Create a new product listing',  color: 'bg-emerald-50 text-emerald-600', path: '/products' },
     { icon: '🏪', label: 'Adjust Stock',    description: 'Stock in / stock out inventory', color: 'bg-violet-50 text-violet-600',   path: '/inventory' },
-    { icon: '👥', label: 'Manage Team',     description: 'Add or edit team members',       color: 'bg-amber-50 text-amber-600',     path: '/users' },
+    { icon: '👥', label: 'Manage Team',     description: 'Add or edit team members',       color: 'bg-amber-50 text-amber-600',     path: '/team' },
     { icon: '📊', label: 'View Reports',    description: 'Revenue & sales reports',        color: 'bg-rose-50 text-rose-600',       path: '/reports' },
     { icon: '📋', label: 'Orders',          description: 'View and update order status',   color: 'bg-slate-100 text-slate-600',    path: '/orders' },
   ];
@@ -145,18 +145,26 @@ function AdminDashboard() {
               </motion.div>
             ))}
             {/* Team count card */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: statCards.length * 0.06 }}>
-              <div className="card-panel h-full p-5">
-                <p className="text-sm text-slate-500">Team Members</p>
-                <h3 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{teamCount}</h3>
-                <p className="mt-3 text-xs text-slate-400">Admins, Managers & Cashiers</p>
-                <button
-                  onClick={() => navigate('/users')}
-                  className="mt-3 text-xs font-semibold text-primary-600 hover:underline"
-                >
-                  Manage team →
-                </button>
-              </div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4 }}
+              transition={{ delay: statCards.length * 0.06 }}
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate('/team')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate('/team'); }}
+              className="card-panel h-full p-5 cursor-pointer text-left transition hover:shadow-md"
+            >
+              <p className="text-sm text-slate-500">Team Members</p>
+              <h3 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{teamCount}</h3>
+              <p className="mt-3 text-xs text-slate-400">Admins, Managers & Cashiers</p>
+              <button
+                onClick={(e) => { e.stopPropagation(); navigate('/team'); }}
+                className="mt-3 text-xs font-semibold text-primary-600 hover:underline"
+              >
+                Manage team →
+              </button>
             </motion.div>
           </section>
 
